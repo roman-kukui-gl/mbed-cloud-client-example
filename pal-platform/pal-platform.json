@@ -1,4 +1,60 @@
 {
+  "RX65N_FreeRTOS_mbedtls": {
+    "device": {
+      "name": "RA6M3"
+    },
+    "os": {
+      "name": "FreeRTOS"
+    },
+    "middleware": {
+      "mbedtls": {
+        "version": "2.19.1",
+        "from": {
+          "protocol": "git",
+          "location": "https://github.com/ARMmbed/mbedtls.git",
+          "tag": "mbedtls-2.19.1",
+          "submodules": {
+            "crypto": {}
+          }
+        },
+        "to": "Middleware/mbedtls"
+      }
+    },
+    "from": {
+      "protocol": "git",
+      "location": "git@portal-ua.globallogic.com:roman.kukui/rx65n-aws-app.git",
+      "tag": "master"
+    },
+    "to": "SDK/RX65N_FreeRTOS"
+  },
+  "RA6M3_FreeRTOS_mbedtls": {
+    "device": {
+      "name": "RA6M3"
+    },
+    "os": {
+      "name": "FreeRTOS"
+    },
+    "middleware": {
+      "mbedtls": {
+        "version": "2.19.1",
+        "from": {
+          "protocol": "git",
+          "location": "https://github.com/ARMmbed/mbedtls.git",
+          "tag": "mbedtls-2.19.1",
+          "submodules": {
+            "crypto": {}
+          }
+        },
+        "to": "Middleware/mbedtls/mbedtls"
+      }
+    },
+    "from": {
+      "protocol": "git",
+      "location": "git@portal-ua.globallogic.com:roman.kukui/renesas_basic_rtos.git",
+      "tag": "master"
+    },
+    "to": "Platform/RA6M3_FreeRTOS"
+  },
   "K64F_FreeRTOS_mbedtls": {
     "comment": "Extra comments\nfor the instructions",
     "device": {
