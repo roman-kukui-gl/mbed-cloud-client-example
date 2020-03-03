@@ -1,0 +1,25 @@
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../)
+
+# add_definitions(-DMBED_CLIENT_USER_CONFIG_FILE="\\"mbed_cloud_client_user_config.h"\\")
+# add_definitions(-DMBED_CLOUD_CLIENT_USER_CONFIG_FILE="\\"mbed_cloud_client_user_config.h"\\")
+add_definitions(-DPAL_USER_DEFINED_CONFIGURATION="\\"sotp_fs_config_FreeRTOS.h"\\")
+
+###############################################################################
+###     PAL configuartion
+
+# Storage Config
+add_definitions(-DPAL_SIMULATOR_FILE_SYSTEM_OVER_RAM=1)
+add_definitions(-DPAL_NUMBER_OF_PARTITIONS=1)
+add_definitions(-DPAL_USE_FILESYSTEM=0)
+
+### TLS config 
+set(PAL_TLS_BSP_DIR ${NEW_CMAKE_SOURCE_DIR}/mbed-cloud-client/mbed-client-pal/Configs/${TLS_LIBRARY})
+
+if (${TLS_LIBRARY} MATCHES mbedTLS)
+    # PAL specific configurations for mbedTLS
+
+    # disable platform entropy inside mbedTLSConfig_FreeRTOS.h (in system entropy support only Win & Linux)
+    add_definitions(-DMBEDTLS_CONFIG_FILE="\\"${PAL_TLS_BSP_DIR}/mbedTLSConfig_${OS_BRAND}.h"\\")
+
+    message("PAL_TLS_BSP_DIR ${PAL_TLS_BSP_DIR}/pal_${OS_BRAND}.h")
+endif()

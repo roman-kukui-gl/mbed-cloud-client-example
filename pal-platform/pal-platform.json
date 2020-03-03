@@ -1,7 +1,7 @@
 {
   "RX65N_FreeRTOS_mbedtls": {
     "device": {
-      "name": "RA6M3"
+      "name": "RX65N"
     },
     "os": {
       "name": "FreeRTOS"
@@ -17,13 +17,13 @@
             "crypto": {}
           }
         },
-        "to": "Middleware/mbedtls"
+        "to": "Middleware/mbedtls/mbedtls"
       }
     },
     "from": {
       "protocol": "git",
       "location": "git@portal-ua.globallogic.com:roman.kukui/rx65n-aws-app.git",
-      "tag": "master"
+      "tag": "dev"
     },
     "to": "SDK/RX65N_FreeRTOS"
   },

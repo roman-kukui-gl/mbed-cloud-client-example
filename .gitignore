@@ -7,9 +7,15 @@ compilation_info.txt
 # mbed-cloud-client lib
 mbed-cloud-client/
 
+# platform specific SDK
+pal-platform/SDK/
+
 # mbedtls lib
 pal-platform/Middleware/mbedtls/
 
 # platform specific software
 pal-platform/Platform/
 *_FreeRTOS_mbedtls.txt
+
+#VSCode settings
+.vscode/settings.json
