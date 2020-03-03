@@ -23,8 +23,9 @@
     add_custom_command(
         TARGET ${target_name}.elf
         POST_BUILD
-        COMMAND ${CMAKE_OBJCOPY} -O binary ${target_dir}/${target_name}.elf ${target_dir}/${target_name}.bin
-        COMMENT "converting to .bin"
+        # \todo Generate ~4GB .bin file
+        # COMMAND ${CMAKE_OBJCOPY} -O binary ${target_dir}/${target_name}.elf ${target_dir}/${target_name}.bin
+        # COMMENT "converting to .bin"
         VERBATIM
     )
 endmacro(ELF_TO_BIN)
