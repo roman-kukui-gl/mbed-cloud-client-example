@@ -1,0 +1,8 @@
+{
+    "files.associations": {
+        "*.h": "c",
+        "*.mot": "s19",
+        "*.make": "cmake",
+        "define*.txt": "cmake"
+    }
+}

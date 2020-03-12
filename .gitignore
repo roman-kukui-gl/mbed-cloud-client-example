@@ -17,5 +17,5 @@ pal-platform/Middleware/mbedtls/
 pal-platform/Platform/
 *_FreeRTOS_mbedtls.txt
 
-#VSCode settings
-.vscode/settings.json
+# Unity Tests build cache
+TESTS/PAL/cache/

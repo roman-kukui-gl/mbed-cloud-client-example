@@ -80,7 +80,7 @@ if(CMAKE_COMPILER_IS_GNUCC)
     -misa=v2 \
     -mlittle-endian-data \
     -Wl,-e_PowerON_Reset \
-    -Wl,-M=aws_demos.map \
+    -Wl,-M=palTests.map \
     ")
 
     # -Wl,--whole-archive   # error - multiple definition in file
@@ -92,6 +92,8 @@ if(CMAKE_COMPILER_IS_GNUCC)
     \
     -lboard \
     \
+    -Wl,-u,_Except_Vectors \
+    -Wl,-u,_Reset_Vector \
     -Wl,-e_PowerON_Reset \
     -Wl,-M=aws_demos.map \
     ")

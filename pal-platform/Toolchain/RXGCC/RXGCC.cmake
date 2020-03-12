@@ -23,9 +23,8 @@
     add_custom_command(
         TARGET ${target_name}.elf
         POST_BUILD
-        # \todo Generate ~4GB .bin file
-        # COMMAND ${CMAKE_OBJCOPY} -O binary ${target_dir}/${target_name}.elf ${target_dir}/${target_name}.bin
-        # COMMENT "converting to .bin"
+        COMMAND ${CMAKE_OBJCOPY} ${target_dir}/${target_name}.elf -O srec -I elf32-rx-be-ns ${target_dir}/${target_name}.mot
+        COMMENT "Converting to .mot (Motorola Srecord)"
         VERBATIM
     )
 endmacro(ELF_TO_BIN)
