@@ -1,0 +1,71 @@
+include_directories(${CMAKE_CURRENT_SOURCE_DIR}/../)
+
+add_definitions(-DMBED_CLIENT_USER_CONFIG_FILE="\\"mbed_cloud_client_user_config.h"\\")
+add_definitions(-DMBED_CLOUD_CLIENT_USER_CONFIG_FILE="\\"mbed_cloud_client_user_config.h"\\")
+add_definitions(-DPAL_USER_DEFINED_CONFIGURATION="\\"sotp_fs_config_FreeRTOS.h"\\")
+
+###############################################################################
+###     PAL configuartion
+
+# Storage Config
+add_definitions(-DPAL_SIMULATOR_FILE_SYSTEM_OVER_RAM=1)
+add_definitions(-DPAL_NUMBER_OF_PARTITIONS=1)
+add_definitions(-DPAL_USE_FILESYSTEM=0)
+
+### TLS config 
+set(PAL_TLS_BSP_DIR ${NEW_CMAKE_SOURCE_DIR}/mbed-cloud-client/mbed-client-pal/Configs/${TLS_LIBRARY})
+
+if (${TLS_LIBRARY} MATCHES mbedTLS)
+    # PAL specific configurations for mbedTLS
+
+    # disable platform entropy inside mbedTLSConfig_FreeRTOS.h (in system entropy support only Win & Linux)
+    add_definitions(-DMBEDTLS_CONFIG_FILE="\\"${PAL_TLS_BSP_DIR}/mbedTLSConfig_${OS_BRAND}.h"\\")
+
+    message("PAL_TLS_BSP_DIR ${PAL_TLS_BSP_DIR}/pal_${OS_BRAND}.h")
+endif()
+
+###############################################################################
+### Tests common settings
+
+# TEST. Non standart test entrypoint.
+add_definitions(-DPAL_UNIT_TESTING_NONSTANDARD_ENTRYPOINT)
+
+# Use external Unity configuration file.
+add_definitions(-DUNITY_INCLUDE_CONFIG_H)
+
+###############################################################################
+### Select one test for building
+### If no concrete test specified below, will build for all tests,
+### with skipping each one from 'Select tests for skipping' section
+
+# add_definitions(-DPAL_UNIT_TEST_FILESYSTEM)
+# add_definitions(-DPAL_UNIT_TEST_NETWORK)
+# add_definitions(-DPAL_UNIT_TEST_CRYPTO)
+# add_definitions(-DPAL_UNIT_TEST_DRBG)
+# add_definitions(-DPAL_UNIT_TEST_ROT)
+# add_definitions(-DPAL_UNIT_TEST_RTOS)
+# add_definitions(-DPAL_UNIT_TEST_STORAGE)
+# add_definitions(-DPAL_UNIT_TEST_TIME)
+# add_definitions(-DPAL_UNIT_TEST_TLS)
+# add_definitions(-DPAL_UNIT_TEST_UPDATE)
+# add_definitions(-DPAL_UNIT_TEST_SOTP)
+# add_definitions(-DPAL_UNIT_TEST_SANITY)
+# add_definitions(-DPAL_UNIT_TEST_REFORMAT)
+
+###############################################################################
+### Select tests for skipping
+### Skip uncommented below, tests (if anyone of the above tests was NOT selected)
+
+# define specific module test skipping, if anyone of the above tests was NOT selected
+add_definitions(-DPAL_SKIP_TEST_MODULE_SOTP)    # \todo Fix me
+# add_definitions(PAL_SKIP_TEST_MODULE_RTOS)
+# add_definitions(PAL_SKIP_TEST_MODULE_NETWORK)
+add_definitions(-DPAL_SKIP_TEST_MODULE_TIME)    # \todo Fix me
+add_definitions(-DPAL_SKIP_TEST_MODULE_CRYPTO)  # \todo Fix me
+add_definitions(-DPAL_SKIP_TEST_MODULE_DRBG)    # \todo Fix me
+# add_definitions(-DPAL_SKIP_TEST_MODULE_FILESYSTEM)
+# add_definitions(-DPAL_SKIP_TEST_MODULE_SST)
+# add_definitions(-DPAL_SKIP_TEST_MODULE_ROT)
+# add_definitions(-DPAL_SKIP_TEST_MODULE_UPDATE)
+# add_definitions(-DPAL_SKIP_TEST_MODULE_INTERNALFLASH)
+add_definitions(-DPAL_SKIP_TEST_MODULE_TLS)     # \todo Fix me

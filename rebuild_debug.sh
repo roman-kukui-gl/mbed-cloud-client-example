@@ -10,13 +10,15 @@ printf "\n\n\t=== Deploy PAL for RX65N target\n\n"
 python pal-platform/pal-platform.py deploy --target=RX65N_FreeRTOS_mbedtls generate
 
 printf "\n\n\t=== Build RX65N platform port mbed (debug config)\n\n"
+make -C pal-platform/SDK/RX65N_FreeRTOS/build clean
+rm pal-platform/SDK/RX65N_FreeRTOS/build/libboard.a
 make -C pal-platform/SDK/RX65N_FreeRTOS/build -j8 lib
 
 # printf "\n\n\t=== Generate Mbed Cloud Client makefiles (debug config)\n\n"
 cd __RX65N_FreeRTOS_mbedtls/
 cmake -G "Unix Makefiles" -DCMAKE_BUILD_TYPE=Debug \
 -DCMAKE_TOOLCHAIN_FILE=./../pal-platform/Toolchain/RXGCC/RXGCC.cmake \
--DEXTERNAL_DEFINE_FILE=./../define-RX65N-FreeRTOS-common.txt
+-DEXTERNAL_DEFINE_FILE=./../define-RX65N-FreeRTOS-tests.txt
 
 printf "\n\n\t=== Build mbed-cloud-client app (debug config)\n\n"
 # make -j4 mbedCloudClientExample.elf

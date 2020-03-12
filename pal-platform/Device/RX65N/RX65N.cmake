@@ -10,21 +10,7 @@ add_definitions(-DTARGET_${TRGT})
 # RUN. Non standart Mbed application entrypoint
 add_definitions(-DMBED_CLOUD_APPLICATION_NONSTANDARD_ENTRYPOINT)
 
-###############################################################################
-###     Tests
-
-# TEST. Non standart test entrypoint.
-add_definitions(-DPAL_UNIT_TESTING_NONSTANDARD_ENTRYPOINT)
-
-# Use external Unity configuration file.
-add_definitions(-DUNITY_INCLUDE_CONFIG_H)
-
-# \todo Read how tests selector work.
-# Test selector for palTests.elf
-add_definitions(-DPAL_UNIT_TEST_RTOS)
-set(PAL_TEST_RTOS 1)
-
-# select target for flash driver
+# select target for flash driver    \todo Check if it is really needed here
 add_definitions(-DBSP_MCU_RX65N)
 
 ###############################################################################
@@ -85,7 +71,7 @@ if(CMAKE_COMPILER_IS_GNUCC)
 
     # -Wl,--whole-archive   # error - multiple definition in file
     set(CMAKE_EXE_LINKER_FLAGS "${CMAKE_EXE_LINKER_FLAGS} \
-    -T${CMAKE_SOURCE_DIR}/pal-platform/SDK/${TRGT}_FreeRTOS/board/linker_script.ld \
+    -T${CMAKE_SOURCE_DIR}/pal-platform/Device/${TRGT}/linker_script.ld \
     -mcpu=rx64m \
     -misa=v2 \
     -mlittle-endian-data \
