@@ -22,8 +22,8 @@
     },
     "from": {
       "protocol": "git",
-      "location": "git@portal-ua.globallogic.com:roman.kukui/rx65n-aws-app.git",
-      "tag": "dev"
+      "location": "git@github.com:roman-kukui-gl/rx65n-freertos-sdk.git",
+      "tag": "master"
     },
     "to": "SDK/RX65N_FreeRTOS"
   },
