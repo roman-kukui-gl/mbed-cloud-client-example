@@ -28,7 +28,7 @@ SECTIONS
 	.rvectors ALIGN(4) :
 	{
 		_rvectors_start = .;
-		INCLUDE /home/roman/proj/mbed-cc-app-rx65n/pal-platform/SDK/RX65N_FreeRTOS/drv/r_bsp/mcu/all/linker_script_rvectors.inc
+		INCLUDE ../drv/r_bsp/mcu/all/linker_script_rvectors.inc
 		_rvectors_end = .;
 	} >ROM
 	.init :
